@@ -100,6 +100,13 @@ services:
       - controller-3
     volumes:
       - ./kafka/config:/mnt/shared/config
+    cap_add:
+      - NET_ADMIN
+    user: root
+    command: >
+      sh -c "apk add --no-cache iproute2 &&
+             tc qdisc add dev eth0 root netem delay 200ms &&
+             /etc/kafka/docker/run"
   kafbat-ui:
     image: ghcr.io/kafbat/kafka-ui:latest
     ports:
