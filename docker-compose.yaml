@@ -54,6 +54,8 @@ services:
       - controller-1
       - controller-2
       - controller-3
+    volumes:
+      - ./kafka/config:/mnt/shared/config
 
   broker-2:
     image: apache/kafka:latest
@@ -74,6 +76,8 @@ services:
       - controller-1
       - controller-2
       - controller-3
+    volumes:
+      - ./kafka/config:/mnt/shared/config
 
   broker-3:
     image: apache/kafka:latest
@@ -94,7 +98,8 @@ services:
       - controller-1
       - controller-2
       - controller-3
-
+    volumes:
+      - ./kafka/config:/mnt/shared/config
   kafbat-ui:
     image: ghcr.io/kafbat/kafka-ui:latest
     ports:
